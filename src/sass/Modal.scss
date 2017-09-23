@@ -1,4 +1,46 @@
-@import './mixin', './init', './scrollbar';
+.modal-overlay {
+    *,
+    *:after,
+    *:before {
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+    }
+
+    button {
+        background-color: inherit;
+        border: 0;
+        outline: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    a:focus,
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: 0;
+    }
+}
+@mixin clearfix {
+    &,
+    &:after {
+        clear: both;
+    }
+
+    &:after,
+    &:before {
+        content: '';
+        display: table;
+    }
+}
 
 .modal-overlay {
     display: none;
@@ -23,6 +65,7 @@
 }
 
 .modal-content {
+    position:relative;
     display: none;
     max-height: calc(100vh - 30px);
     border: 1px solid #000;
@@ -95,20 +138,35 @@
 .modal-content__inner {
     position: relative;
     overflow: hidden;
-    padding: 20px;
+    padding: 0;
     width: 100%;
     text-align: left;
     background-color: #f9f9f9;
 }
-// animation
-@keyframes modal-animation {
+/* animation*/
+@-webkit-keyframes modal-animation {
     0% {
-        transform: translateY(-5%);
+        -webkit-transform: translateY(-5%);
+                transform: translateY(-5%);
         opacity: 0;
     }
 
     100% {
-        transform: translateY(0);
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes modal-animation {
+    0% {
+        -webkit-transform: translateY(-5%);
+                transform: translateY(-5%);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
         opacity: 1;
     }
 }

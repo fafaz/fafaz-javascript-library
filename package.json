@@ -1,5 +1,5 @@
 {
-  "name": "fafaz_library",
+  "name": "fafaz-modal",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fafaz/fafaz-javascript-library.git"
+    "url": "git+https://github.com/fafaz/fafaz-modal.git"
   },
   "keywords": [
     "fafaz",
@@ -19,9 +19,9 @@
   "author": "fafaz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fafaz/fafaz-javascript-library/issues"
+    "url": "https://github.com/fafaz/fafaz-modal/issues"
   },
-  "homepage": "https://github.com/fafaz/fafaz-javascript-library#readme",
+  "homepage": "https://github.com/fafaz/fafaz-modal#readme",
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.2",
@@ -39,8 +39,5 @@
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.5.6",
     "webpack-dev-server": "^2.8.1"
-  },
-  "dependencies": {
-    "perfect-scrollbar": "^0.8.1"
   }
 }

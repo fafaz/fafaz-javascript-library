@@ -5,7 +5,8 @@
         <title>FAFAZ UI COMPONENT__MODAL</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <script src="../dist/Modal.min.js"></script>
+        <script src="../dist/Modal.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:300,700" rel="stylesheet">
         <link href="../dist/Modal.css" rel="stylesheet">
         <link href="./demo.css" rel="stylesheet">
     </head>
@@ -13,117 +14,80 @@
     <body>
         <section class="header">
             <div class="container-inner">
-                <h1 class="header-title">fafaz.Modal</h1>
+              <h1 class="header-title">fafaz.Modal</h1>
+              <a href="https://github.com/fafaz/fafaz-modal" target="_blank" class="header-github"><svg width="2em" height="2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
             </div>
         </section>
 
         <section class="container">
             <div class="container-inner">
-                <button class="trigger" data-modal-id="test_modal" data-modal-title="HELLO WORLD" data-width="500"><span>모달1</span></button>
-                <button class="trigger2" data-modal-id="test_modal2" data-modal-title="HI WORLD" data-width="400">모달2</button>
+                <button
+                  class="button trigger"
+                  data-modal-id="test_modal"
+                  data-modal-title="trigger1"
+                  data-modal-width="400">Click</button>
+
+                  <button
+                    class="button trigger"
+                    data-modal-id="test_modal2"
+                    data-modal-title="trigger2"
+                    data-modal-width="500">Click</button>
+
+                    <button
+                      class="button trigger"
+                      data-modal-id="test_modal3"
+                      data-modal-title="trigger3"
+                      data-modal-width="600">Click</button>
+
+
+                  <div id="test_modal" hidden>
+                    <div class="test">
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                    </div>
+                  </div>
+                  <div id="test_modal2" hidden>
+                    <div class="test">
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                    </div>
+                  </div>
+                  <div id="test_modal3" hidden>
+                    <div class="test">
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                    </div>
+                  </div>
             </div>
         </section>
-
-        <div id="test_modal" class="modal-content">
-            <div class="test-item"><div>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-              <p>dsdsd</p>
-            </div></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-        </div>
-
-        <div id="test_modal2" class="modal-content">
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-        </div>
 
         <script type="text/javascript">
         (function() {
           window.onload = function() {
-              var trigger = document.querySelector('.trigger');
-              var trigger2 = document.querySelector('.trigger2');
-              var modal = new fafaz.Modal(trigger, {
+              var modal = new fafaz.Modal('.trigger', {
                   useContentScroll: true,
-                  header: {
-                    use:true
-                  },
-                  footer: {
-                    use:true,
-                    applyCallback: function() {
-                      alert('callback');
-                    }
-                  },
-                  useContentCache: true,
-                  callback: function(layer) {
-                    var newScrollArea = layer.querySelector('.test-item');
-                    modal.PS.initialize(newScrollArea);
+                  useHeader:true,
+                  useFooter:true,
+                  footerApplyCallback: function() {
+                    alert('apply callback');
                   }
-              });
-
-              var modal2 = new fafaz.Modal(trigger2, {
-                  useCache: false,
-                  footer: {
-                    use:false
-                  }
-              });
+              })
           }
-          document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
         })();
         </script>
     </body>
