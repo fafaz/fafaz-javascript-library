@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>FAFAZ UI COMPONENT__MODAL</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <script src="../dist/Modal.min.js"></script>
+        <link href="../dist/Modal.css" rel="stylesheet">
+        <link href="./demo.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <section class="header">
+            <div class="container-inner">
+                <h1 class="header-title">fafaz.Modal</h1>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="container-inner">
+                <button class="trigger" data-modal-id="test_modal" data-modal-title="HELLO WORLD" data-width="500"><span>모달1</span></button>
+                <button class="trigger2" data-modal-id="test_modal2" data-modal-title="HI WORLD" data-width="400">모달2</button>
+            </div>
+        </section>
+
+        <div id="test_modal" class="modal-content">
+            <div class="test-item"><div>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+              <p>dsdsd</p>
+            </div></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+        </div>
+
+        <div id="test_modal2" class="modal-content">
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+        </div>
+
+        <script type="text/javascript">
+        (function() {
+          window.onload = function() {
+              var trigger = document.querySelector('.trigger');
+              var trigger2 = document.querySelector('.trigger2');
+              var modal = new fafaz.Modal(trigger, {
+                  useContentScroll: true,
+                  header: {
+                    use:true
+                  },
+                  footer: {
+                    use:true,
+                    applyCallback: function() {
+                      alert('callback');
+                    }
+                  },
+                  useContentCache: true,
+                  callback: function(layer) {
+                    var newScrollArea = layer.querySelector('.test-item');
+                    modal.PS.initialize(newScrollArea);
+                  }
+              });
+
+              var modal2 = new fafaz.Modal(trigger2, {
+                  useCache: false,
+                  footer: {
+                    use:false
+                  }
+              });
+          }
+          document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        })();
+        </script>
+    </body>
+</html>

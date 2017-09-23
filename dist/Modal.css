@@ -1,0 +1,211 @@
+.modal-overlay *,
+.modal-overlay *:before,
+.modal-overlay *:after {
+  box-sizing: border-box; }
+
+.modal-overlay button {
+  background-color: inherit;
+  border: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  font-weight: bold; }
+
+.modal-overlay a {
+  text-decoration: none !important; }
+
+.modal-overlay a:focus,
+.modal-overlay button:focus,
+.modal-overlay select:focus,
+.modal-overlay input:focus,
+.modal-overlay textarea:focus {
+  outline: 0; }
+
+.ps {
+  -ms-touch-action: auto;
+  touch-action: auto;
+  overflow: hidden !important;
+  -ms-overflow-style: none; }
+  @supports (-ms-overflow-style: none) {
+    .ps {
+      overflow: auto !important; } }
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .ps {
+      overflow: auto !important; } }
+  .ps.ps--active-x > .ps__scrollbar-x-rail,
+  .ps.ps--active-y > .ps__scrollbar-y-rail {
+    display: block;
+    background-color: transparent; }
+  .ps.ps--in-scrolling.ps--x > .ps__scrollbar-x-rail {
+    background-color: #eaeaea;
+    opacity: 0.9; }
+    .ps.ps--in-scrolling.ps--x > .ps__scrollbar-x-rail > .ps__scrollbar-x {
+      background-color: #bbb;
+      height: 11px; }
+  .ps.ps--in-scrolling.ps--y > .ps__scrollbar-y-rail {
+    background-color: #eaeaea;
+    opacity: 0.9; }
+    .ps.ps--in-scrolling.ps--y > .ps__scrollbar-y-rail > .ps__scrollbar-y {
+      background-color: #bbb;
+      width: 7px; }
+  .ps > .ps__scrollbar-x-rail {
+    display: none;
+    position: absolute;
+    /* please don't change 'position' */
+    opacity: 0;
+    transition: background-color .2s linear, opacity .2s linear;
+    bottom: 0px;
+    /* there must be 'bottom' for ps__scrollbar-x-rail */
+    height: 15px; }
+    .ps > .ps__scrollbar-x-rail > .ps__scrollbar-x {
+      position: absolute;
+      /* please don't change 'position' */
+      background-color: #ddd;
+      border-radius: 0;
+      transition: background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;
+      bottom: 2px;
+      /* there must be 'bottom' for ps__scrollbar-x */
+      height: 6px; }
+    .ps > .ps__scrollbar-x-rail:hover > .ps__scrollbar-x, .ps > .ps__scrollbar-x-rail:active > .ps__scrollbar-x {
+      height: 11px; }
+  .ps > .ps__scrollbar-y-rail {
+    display: none;
+    position: absolute;
+    /* please don't change 'position' */
+    opacity: 0;
+    transition: background-color .2s linear, opacity .2s linear;
+    right: 0;
+    /* there must be 'right' for ps__scrollbar-y-rail */
+    width: 7px; }
+    .ps > .ps__scrollbar-y-rail > .ps__scrollbar-y {
+      position: absolute;
+      /* please don't change 'position' */
+      background-color: #ddd;
+      border-radius: 0;
+      transition: background-color .2s linear, height .2s linear, width .2s ease-in-out, border-radius .2s ease-in-out;
+      right: 0;
+      /* there must be 'right' for ps__scrollbar-y */
+      width: 7px; }
+    .ps > .ps__scrollbar-y-rail:hover > .ps__scrollbar-y, .ps > .ps__scrollbar-y-rail:active > .ps__scrollbar-y {
+      width: 7px; }
+  .ps:hover.ps--in-scrolling.ps--x > .ps__scrollbar-x-rail {
+    background-color: #eaeaea;
+    opacity: 0.9; }
+    .ps:hover.ps--in-scrolling.ps--x > .ps__scrollbar-x-rail > .ps__scrollbar-x {
+      background-color: #bbb;
+      height: 11px; }
+  .ps:hover.ps--in-scrolling.ps--y > .ps__scrollbar-y-rail {
+    background-color: #eaeaea;
+    opacity: 0.9; }
+    .ps:hover.ps--in-scrolling.ps--y > .ps__scrollbar-y-rail > .ps__scrollbar-y {
+      background-color: #bbb;
+      width: 7px; }
+  .ps:hover > .ps__scrollbar-x-rail,
+  .ps:hover > .ps__scrollbar-y-rail {
+    opacity: 0.6; }
+  .ps:hover > .ps__scrollbar-x-rail:hover {
+    background-color: #eaeaea;
+    opacity: 0.9; }
+    .ps:hover > .ps__scrollbar-x-rail:hover > .ps__scrollbar-x {
+      background-color: #bbb; }
+  .ps:hover > .ps__scrollbar-y-rail:hover {
+    background-color: #eaeaea;
+    opacity: 0.9; }
+    .ps:hover > .ps__scrollbar-y-rail:hover > .ps__scrollbar-y {
+      background-color: #bbb; }
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(180, 180, 180, 0.75); }
+  .modal-overlay.is-active {
+    display: table;
+    table-layout: fixed;
+    z-index: 9999999999; }
+  .modal-overlay .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center; }
+
+.modal-content {
+  display: none;
+  max-height: calc(100vh - 30px);
+  border: 1px solid #000; }
+  .modal-content.is-active {
+    display: inline-block;
+    max-width: calc(100vw - 30px);
+    background-color: #fff;
+    -webkit-animation-name: modal-animation;
+    animation-name: modal-animation;
+    -webkit-animation-duration: 0.75s;
+    animation-duration: 0.75s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1; }
+
+.modal-header {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  border-bottom: 1px solid #eaeaea;
+  background-color: #fff; }
+  .modal-header, .modal-header:after {
+    clear: both; }
+  .modal-header:after, .modal-header:before {
+    content: '';
+    display: table; }
+  .modal-header .modal-header__title {
+    float: left;
+    line-height: 48px;
+    font-size: 15px;
+    font-weight: bold; }
+  .modal-header .modal-header__closeBtn {
+    float: right;
+    line-height: 48px;
+    font-size: 30px;
+    border: none;
+    background-color: #fff; }
+    .modal-header .modal-header__closeBtn svg {
+      vertical-align: -4px;
+      margin-right: -7.5px; }
+
+.modal-footer {
+  border-top: 1px solid #000; }
+  .modal-footer, .modal-footer:after {
+    clear: both; }
+  .modal-footer:after, .modal-footer:before {
+    content: '';
+    display: table; }
+  .modal-footer .modal-footer__apply,
+  .modal-footer .modal-footer__close {
+    float: left;
+    width: 50%;
+    height: 48px;
+    line-height: 48px;
+    font-size: 1.1em; }
+  .modal-footer .modal-footer__close {
+    color: #999; }
+  .modal-footer .modal-footer__apply {
+    background-color: #234aad;
+    color: #fff; }
+
+.modal-content__inner {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+  background-color: #f9f9f9; }
+
+@keyframes modal-animation {
+  0% {
+    transform: translateY(-5%);
+    opacity: 0; }
+  100% {
+    transform: translateY(0);
+    opacity: 1; } }

@@ -1,0 +1,114 @@
+@import './mixin', './init', './scrollbar';
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(180,180,180, 0.75);
+
+    &.is-active {
+        display: table;
+        table-layout: fixed;
+        z-index: 9999999999;
+    }
+
+    .modal-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+}
+
+.modal-content {
+    display: none;
+    max-height: calc(100vh - 30px);
+    border: 1px solid #000;
+
+    &.is-active {
+        display: inline-block;
+        max-width: calc(100vw - 30px);
+        background-color: #fff;
+        -webkit-animation-name: modal-animation;
+        animation-name: modal-animation;
+        -webkit-animation-duration: 0.75s;
+        animation-duration: 0.75s;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+    }
+}
+
+.modal-header {
+    @include clearfix;
+
+    .modal-header__title {
+        float: left;
+        line-height: 48px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .modal-header__closeBtn {
+        float: right;
+        line-height: 48px;
+        font-size: 30px;
+        border: none;
+        background-color: #fff;
+
+        svg {
+            vertical-align: -4px;
+            margin-right: -7.5px;
+        }
+    }
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    border-bottom: 1px solid #eaeaea;
+    background-color: #fff;
+}
+
+.modal-footer {
+    @include clearfix;
+    border-top: 1px solid #000;
+
+    .modal-footer__apply,
+    .modal-footer__close {
+        float: left;
+        width: 50%;
+        height: 48px;
+        line-height: 48px;
+        font-size: 1.1em;
+    }
+
+    .modal-footer__close {
+        color: #999;
+    }
+
+    .modal-footer__apply {
+        background-color: #234aad;
+        color: #fff;
+    }
+}
+
+.modal-content__inner {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+    background-color: #f9f9f9;
+}
+// animation
+@keyframes modal-animation {
+    0% {
+        transform: translateY(-5%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

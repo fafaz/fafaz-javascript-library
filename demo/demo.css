@@ -1,0 +1,76 @@
+*,*:before,*:after {
+    -webkit-box-sizing:border-box;
+            box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+.u-clearfix, .u-clearfix:after {
+    clear:both
+}
+
+.u-clearfix:before, .u-clearfix:after {
+    content:'';
+    display:table;
+}
+
+
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v11/yQiAaD56cjx1AooMTSghGfY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v11/0dTEPzkLWceF7z0koJaX1A.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+
+body {
+    background-color:#fafafa;
+    font-size:14px;
+    font-family:'Raleway', NanumGothic, NanumBarunGothic, Dotum, Sans-serif;
+}
+
+.container-inner {
+    width:600px;
+    max-width:100%;
+    margin:0 auto;
+}
+
+.header {
+    background-color:#f3f3f3;
+    padding:500px 0;
+    width:100%;
+}
+
+.header-title {
+    font-size:3em;
+    color:#222;
+    font-weight:bolder;
+    line-height:1;
+}
+
+.container {
+
+}
+
+/*** TEST ***/
+
+.test-item {
+  position:relative;
+  overflow:hidden;
+    display:block;
+    height:75px;
+    width:100%;
+    background-color:#fff;
+    border:1px solid #ddd;
+    margin-bottom:10px;
+}
