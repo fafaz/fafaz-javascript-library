@@ -44,27 +44,8 @@ export default class Modal {
           Object.assign(this._options, options);
         }
 
-        if (trigger.length > 1) {
-          for (let i=0, c=trigger.length; i<c; i++) {
-            trigger[i].addEventListener('click', (ev) => {
-                const target = ev.currentTarget || ev.target;
-                const params = {};
-                params.id = target.getAttribute('data-modal-id');
-                params.title = target.getAttribute('data-modal-title');
-                params.width = target.getAttribute('data-modal-width') ? target.getAttribute('data-modal-width') : 500;
-
-                // checking already generated
-                if (document.getElementById(`modal_${params.id}_temp`)) {
-                  this.open(`${params.id}_temp`);
-                } else {
-                  this.generate(params, () => {
-                    this.open(`${params.id}_temp`);
-                  });
-                }
-            });
-          }
-        } else {
-          trigger[0].addEventListener('click', (ev) => {
+        for (let i=0, c=trigger.length; i<c; i++) {
+          trigger[i].addEventListener('click', (ev) => {
               const target = ev.currentTarget || ev.target;
               const params = {};
               params.id = target.getAttribute('data-modal-id');
