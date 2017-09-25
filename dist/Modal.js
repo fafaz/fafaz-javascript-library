@@ -158,7 +158,7 @@ var Modal = function () {
         });
       }
     } else {
-      trigger.addEventListener('click', function (ev) {
+      trigger[0].addEventListener('click', function (ev) {
         var target = ev.currentTarget || ev.target;
         var params = {};
         params.id = target.getAttribute('data-modal-id');

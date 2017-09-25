@@ -64,7 +64,7 @@ export default class Modal {
             });
           }
         } else {
-          trigger.addEventListener('click', (ev) => {
+          trigger[0].addEventListener('click', (ev) => {
               const target = ev.currentTarget || ev.target;
               const params = {};
               params.id = target.getAttribute('data-modal-id');
