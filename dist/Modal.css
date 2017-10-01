@@ -76,7 +76,7 @@
   .modal-header .modal-header__closeBtn {
     float: right;
     line-height: 48px;
-    font-size: 30px;
+    font-size: 25px;
     border: none;
     background-color: #fff; }
     .modal-header .modal-header__closeBtn svg {
@@ -110,6 +110,26 @@
   width: 100%;
   text-align: left;
   background-color: #f9f9f9; }
+  .modal-content__inner .modal-list a {
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    color: #aaa;
+    padding: 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 40px;
+    line-height: 39px;
+    border-bottom: 1px solid #eee; }
+    .modal-content__inner .modal-list a:last-child {
+      border-bottom: 0;
+      line-height: 40px; }
+    .modal-content__inner .modal-list a:hover {
+      background-color: #fafafa;
+      color: #777; }
+    .modal-content__inner .modal-list a:active {
+      background-color: #f3f3f3; }
 
 /* animation*/
 @-webkit-keyframes modal-animation {
