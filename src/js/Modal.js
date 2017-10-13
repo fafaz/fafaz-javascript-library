@@ -134,7 +134,6 @@ export default class Modal {
 
     if (this._options.preventBackgroundScroll) {
       document.documentElement.style.overflowY = 'hidden';
-      document.body.style.overflowY = 'hidden';
     }
 
     if (typeof this._options.callback === 'function') this._options.callback(layer);
@@ -148,7 +147,6 @@ export default class Modal {
     layer.classList.remove('is-active');
 
     document.documentElement.style.overflowY = 'initial';
-    document.body.style.overflowY = 'initial';
   }
 
   resize(scrollArea) {

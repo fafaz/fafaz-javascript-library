@@ -226,7 +226,6 @@ var Modal = function () {
 
     if (this._options.preventBackgroundScroll) {
       document.documentElement.style.overflowY = 'hidden';
-      document.body.style.overflowY = 'hidden';
     }
 
     if (typeof this._options.callback === 'function') this._options.callback(layer);
@@ -240,7 +239,6 @@ var Modal = function () {
     layer.classList.remove('is-active');
 
     document.documentElement.style.overflowY = 'initial';
-    document.body.style.overflowY = 'initial';
   };
 
   Modal.prototype.resize = function resize(scrollArea) {
