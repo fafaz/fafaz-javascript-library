@@ -239,8 +239,8 @@ var Modal = function () {
     overlay.classList.remove('is-active');
     layer.classList.remove('is-active');
 
-    document.documentElement.style.overflowY = 'auto';
-    document.body.style.overflowY = 'auto';
+    document.documentElement.style.overflowY = 'initial';
+    document.body.style.overflowY = 'initial';
   };
 
   Modal.prototype.resize = function resize(scrollArea) {
@@ -264,7 +264,7 @@ var Modal = function () {
 exports["default"] = Modal;
 ;
 
-Modal.VERSION = '1.0.0';
+Modal.VERSION = '1.0.1';
 module.exports = Modal;
 module.exports = exports["default"];
 
