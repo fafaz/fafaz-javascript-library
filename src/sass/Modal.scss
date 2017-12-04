@@ -2,6 +2,8 @@
     *,
     *:after,
     *:before {
+        padding:0;
+        margin:0;
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
     }
@@ -29,6 +31,7 @@
         outline: 0;
     }
 }
+
 @mixin clearfix {
     &,
     &:after {
@@ -45,33 +48,32 @@
 .modal-overlay {
     display: none;
     position: fixed;
+    overflow-x:hidden;
+    overflow-y:auto;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right:0;
+    bottom:0;
     background-color: rgba(180,180,180, 0.75);
+    cursor: zoom-out;
 
     &.is-active {
-        display: table;
-        table-layout: fixed;
+        display: block;
         z-index: 9999999999;
-    }
-
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
     }
 }
 
 .modal-content {
+    font-size:15px;
     position:relative;
     display: none;
-    max-height: calc(100vh - 30px);
-    border: 1px solid #000;
+    height:2000px;
+    margin:2.5% auto;
+    border: 1px solid #1e1e1e;
+    cursor:default;
 
-    &.is-active {
-        display: inline-block;
+    .is-active & {
+        display: block;
         max-width: calc(100vw - 30px);
         background-color: #fff;
         -webkit-animation-name: modal-animation;
@@ -85,59 +87,32 @@
 
 .modal-header {
     @include clearfix;
-
     .modal-header__title {
         float: left;
-        line-height: 48px;
-        font-size: 15px;
+        line-height: 40px;
+        font-size: 1em;
         font-weight: bold;
     }
-
+    
     .modal-header__closeBtn {
         float: right;
-        line-height: 48px;
-        font-size: 25px;
+        line-height: 40px;
+        font-size: 1em;
         border: none;
         background-color: #fff;
-
-        svg {
-            vertical-align: -4px;
-            margin-right: -7.5px;
-        }
     }
+    
     display: block;
+    height:40px;
     width: 100%;
-    padding: 0 20px;
-    border-bottom: 1px solid #eaeaea;
+    padding: 0 1em;
     background-color: #fff;
-}
-
-.modal-footer {
-    @include clearfix;
-    border-top: 1px solid #000;
-
-    .modal-footer__apply,
-    .modal-footer__close {
-        float: left;
-        width: 50%;
-        height: 48px;
-        line-height: 48px;
-        font-size: 1.1em;
-    }
-
-    .modal-footer__close {
-        color: #999;
-    }
-
-    .modal-footer__apply {
-        background-color: #234aad;
-        color: #fff;
-    }
 }
 
 .modal-content__inner {
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 0;
     width: 100%;
     text-align: left;

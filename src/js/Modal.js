@@ -1,169 +1,148 @@
-require('../sass/modal.scss');
+import Component from '@egjs/component';
+import { nodeToArray, addEvent, removeEvent, hasClass } from './utils';
+import '../sass/modal.scss';
 
 /**
  * Copyright (c) fafazlab
  * fafaz-modal projects are licensed under the MIT license
  */
 
-// IE8
-// https://stackoverflow.com/questions/43216659/babel-ie8-inherit-issue-with-object-create
-/* eslint-disable */
-if (typeof Object.create !== "function") {
-  Object.create = function(o, properties) {
-    if (typeof o !== "object" && typeof o !== "function") {
-      throw new TypeError("Object prototype may only be an Object: " + o);
-    } else if (o === null) {
-      throw new Error("This browser's implementation of Object.create is a shim and doesn't support 'null' as the first argument.");
+export default class Modal extends Component {
+
+    constructor(trigger = undefined, customOptions = {}) {
+        super();
+
+        if (!trigger) throw 'trigger is not exist';
+        this._version = '1.1';
+
+        // 기본 설정값
+        const defaultOptions = {
+            theme: {
+                useBorder: true,
+                borderColor: '#1e1e1e',
+                overlayColor: undefined,
+                spinner: false
+            },
+            cloneNode: true,
+            fixedHeight: false,
+            useHeader: true
+        };
+        
+        // 커스텀 설정값 불러오기 
+        this._config = { ...defaultOptions, ...customOptions, theme: { ...defaultOptions.theme, ...customOptions.theme } };
+        
+        // 트리거 이벤트 맵핑
+        this._triggers = nodeToArray(document.querySelectorAll(trigger));
+        this._triggers.map((item, idx) => {
+            addEvent(item, 'click', () => {
+                const params = {
+                    id: item.getAttribute('data-modal-id'),
+                    title: item.getAttribute('data-modal-title'),
+                    width: item.getAttribute('data-modal-width') ? item.getAttribute('data-modal-width') : 500,
+                    height: item.getAttribute('data-modal-height') ? item.getAttribute('data-modal-height') : null
+                };
+
+                // 이미 생성되었는지 확인, 이미 있으면 open 없으면 generate
+                const targetId = this._config.cloneNode ? `modal_${params.id}_temp` : `modal_${params.id}`;
+                document.getElementById(targetId) ? this.open(targetId) : this.generate(params, () => this.open(targetId));
+            });
+        });
     }
+    // constructor end
 
-    function F() {}
-    F.prototype = o;
-    return new F();
-  };
-}
+    generate(params, callback) {
+        // overlay element를 생성한 후 
+        let overlay = document.createElement('div');
+        let layer = document.getElementById(params.id);
 
-export default class Modal {
-  constructor(trigger, options) {
-    if (!trigger) return;
-    trigger = document.querySelectorAll(trigger);
-
-    this._options = {
-      overlayColor: '',
-      useContainerScroll: false,
-      nodeClone: true,
-      useContentCache: true,
-      preventBackgroundScroll: true,
-      useHeader: true,
-      useFooter: true,
-      footerFocusingColor: '',
-      footerButtonName: ['cancel', 'apply'],
-      footerApplyCallback: null,
-      callback: null,
-    };
-
-    if (options) {
-      Object.assign(this._options, options);
-    }
-
-    for (let i = 0, c = trigger.length; i < c; i++) {
-      trigger[i].addEventListener('click', (ev) => {
-        const target = ev.currentTarget || ev.target;
-        const params = {};
-        params.id = target.getAttribute('data-modal-id');
-        params.title = target.getAttribute('data-modal-title');
-        params.width = target.getAttribute('data-modal-width') ? target.getAttribute('data-modal-width') : 500;
-
-        // checking already generated
-        let target_id = this._options.nodeClone ? `${params.id}_temp` : params.id;
-        if (document.getElementById(`modal_${target_id}`)) {
-          this.open(target_id);
+        if (this._config.cloneNode) {
+            layer = layer.cloneNode(true);
+            layer.id = `${params.id}_temp`;
+            overlay.id = `modal_${params.id}_temp`;
         } else {
-          this.generate(params, () => {
-            this.open(target_id);
-          });
+            overlay.id = `modal_${params.id}`;
         }
-      });
-    }
-  } // constructor end
+
+        overlay.classList.add('modal-overlay', 'modal-close');
+        layer.classList.add('modal-content');
+
+        layer.style.width = `${params.width}px`;
+        if (this._config.fixedHeight && params.height) layer.style.height = `${params.height}px`;
+        
+        // custom theme 설정값 적용
+        if (this._config.theme.overlayColor) {
+            overlay.style.backgroundColor = this._config.theme.overlayColor;
+        }
+
+        if (!this._config.theme.useBorder) {
+            layer.style.border = '0';
+            layer.style.borderColor = this._config.theme.borderColor;
+        }
 
 
-  generate(params, callback) {
-    const overlay = document.createElement('div');
-    const wrapper = document.createElement('div');
+        let header = this._config.useHeader 
+        ?   `<section class="modal-header">
+                <h1 class="modal-header__title">${params.title}</h1>
+                <button class="modal-header__closeBtn modal-close"><svg width='1em' height='1em' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+            </section>` 
+        : '';
 
-    let layer = document.getElementById(params.id);
+        layer.innerHTML = `${header}<div class="modal-content__inner">${layer.innerHTML}</div>`;
+        overlay.appendChild(layer);
 
-    if (this._options.nodeClone) {
-      layer = layer.cloneNode(true);
-      layer.id = `${params.id}_temp`;
-      overlay.id = `modal_${params.id}_temp`;
-    } else {
-      overlay.id = `modal_${params.id}`;
-    }
+        // 실제 DOM에 insert
+        document.body.appendChild(overlay);
 
-    layer.classList.add('modal-content');
-    layer.style.width = `${params.width}px`;
-    overlay.classList.add('modal-overlay');
-    if (this._options.overlayColor) overlay.style.backgroundColor = this._options.overlayColor;
 
-    wrapper.classList.add('modal-wrapper');
-    wrapper.classList.add('close');
-    let header = this._options.useHeader ?
-      `<div class="modal-header"><span class="modal-header__title">${params.title}</span><button class="modal-header__closeBtn close"><svg width='1em' height='1em' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>` :
-      '';
+        // postioning 메서드 실행, ovelay overlow 고정 ( fixedHeight && params.height 일 경우에만 )
+        if (this._config.fixedHeight && params.height) {
+            const layerInner = layer.querySelector('.modal-content__inner');
+            layerInner.style.height = 'calc(100% - 40px)';
+            this.positioning(layer, params.height);
+            addEvent(window, 'resize', () => this.positioning(layer, params.height), true);
+            overlay.style.overflowY = 'hidden';
+        }
 
-    let footer = this._options.useFooter ?
-      `<div class="modal-footer"><button class="modal-footer__close close">${this._options.footerButtonName[0]}</button><button class="modal-footer__apply" style="background-color:${this._options.footerFocusingColor}">${this._options.footerButtonName[1]}</button></div>` :
-      '';
+        // close 이벤트를 등록
+        const nodeForClose = nodeToArray(document.querySelectorAll('.modal-close'));
+        nodeForClose.map((item) => addEvent(item, 'click', () => this.close(overlay.id)));
+        addEvent(layer, 'click', (e) => e.stopPropagation());
 
-    layer.innerHTML = `${header}<div class="modal-content__inner">${layer.innerHTML}</div>${footer}`;
+        // event trigger 등록
+        this.trigger('afterGenerate');
 
-    wrapper.appendChild(layer);
-    overlay.appendChild(wrapper);
-    document.body.appendChild(overlay);
-
-    //let height = layer.clientHeight;
-    if (this._options.useFooter && typeof this._options.footerApplyCallback === 'function') layer.querySelector('.modal-footer__apply').addEventListener('click', this._options.footerApplyCallback);
-    if (typeof callback === 'function') callback(layer);
-  }
-
-  open(id) {
-    const layer = document.getElementById(id);
-    const overlay = document.getElementById(`modal_${id}`);
-    const nodeForClose = overlay.querySelectorAll('.close');
-
-    overlay.classList.add('is-active');
-    layer.classList.add('is-active');
-
-    const scrollArea = layer.querySelector('.modal-content__inner');
-    this.resize(scrollArea);
-    window.addEventListener('resize', () => {
-      this.resize(scrollArea);
-    }, true);
-
-    // close event
-    nodeForClose.forEach((item) => {
-      item.addEventListener('click', () => {
-        this.close(layer, overlay);
-      });
-    });
-
-    layer.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-
-    if (this._options.preventBackgroundScroll) {
-      document.documentElement.style.overflowY = 'hidden';
+        // callback 실행
+        callback();
     }
 
-    if (typeof this._options.callback === 'function') this._options.callback(layer);
-  }
-
-  close(layer, overlay) {
-    if (!this._options.useContentCache) {
-      overlay.parentNode.removeChild(overlay)
+    open(target) {
+        document.getElementById(target).classList.add('is-active');
+        document.documentElement.style.overflowY = 'hidden';
     }
-    overlay.classList.remove('is-active');
-    layer.classList.remove('is-active');
 
-    document.documentElement.style.overflowY = 'initial';
-  }
+    close(target) {
+        const overlay = document.getElementById(target);
 
-  resize(scrollArea) {
-    let contentHeight = scrollArea.scrollHeight;
-    let maxHeight = window.innerHeight - 30;
-    let substractHeight = (() => {
-      if (!this._options.useFooter && !this._options.useHeader) return 30;
-      else if ((this._options.useHeader && !this._options.useFooter) || (!this._options.useHeader && this._options.useFooter)) return 80;
-      else return 130;
-    })();
+        // overlay의 active 클래스를 삭제
+        overlay.classList.remove('is-active');
 
-    if (contentHeight >= maxHeight - substractHeight) {
-      scrollArea.style.height = `${maxHeight - substractHeight}px`;
-      if (this._options.useContainerScroll) scrollArea.style.overflowY = 'scroll';
+        // 복제된 node 라면 다시 삭제한다. ( 열떄마다 새로 generate하도록 )
+        if (this._config.cloneNode) {
+            overlay.parentNode.removeChild(overlay)
+        }
+
+        // html 노드의 overflow 를 초기화해준다.
+        document.documentElement.style.overflowY = 'initial';
+
     }
-  }
+
+    positioning(layer, layerHeight) {
+        /**
+         * 1. 만약 고정된 높이값이 브라우저의 높이보다 크다면, 90vh 로 리사이즈한 후 margin 상하 값을 5vh로 주면 된다.
+         * 2. 고정된 높이값이 브라우저 높이보다 작다면, (브라우저 높이값 - 고정된 높이값)/2 를 margin의 상하값으로 대입
+         */
+        const calculateValue = window.innerHeight - layerHeight;
+        layer.style.maxHeight = '90vh';
+        layer.style.marginTop = calculateValue > 0 ? `${calculateValue/2}px` : '5vh';
+    }
 };
-
-Modal.VERSION = '1.0.1';
-module.exports = Modal;
