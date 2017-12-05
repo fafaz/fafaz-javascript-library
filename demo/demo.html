@@ -5,9 +5,9 @@
         <title>FAFAZ UI COMPONENT__MODAL</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <script src="../dist/Modal.js"></script>
+        <script src="../build/Modal.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:300,700" rel="stylesheet">
-        <link href="../dist/Modal.css" rel="stylesheet">
+        <link href="../build/Modal.css" rel="stylesheet">
         <link href="./demo.css" rel="stylesheet">
     </head>
 
@@ -25,9 +25,8 @@
                   class="button trigger"
                   data-modal-id="test_modal"
                   data-modal-title="trigger1"
-                  data-width="400">Click</button>
-
-
+                  data-modal-width="400"
+                  data-modal-height="500">Click</button>
 
                   <div id="test_modal" hidden>
                     <div class="test">
@@ -69,12 +68,9 @@
         (function() {
           window.onload = function() {
               var modal = new fafaz.Modal('.trigger', {
-                  useContentScroll: true,
-                  useHeader:true,
-                  useFooter:true,
-                  footerApplyCallback: function() {
-                    alert('apply callback');
-                  }
+                cloneNode: true,
+                fixedHeight: true,
+                useHeader: true,
               })
           }
         })();

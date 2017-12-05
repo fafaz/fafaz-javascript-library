@@ -68,6 +68,16 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 
 
 <br/>
+## Events
+```javascript
+var myModal = new fafaz.Modal('.modal-trigger', {
+    ...options
+});
+
+myModal.on('afterGenerate', function(e) {
+  // ~~~
+  // you can select container element by using e.container
+})
 
 ## License
 

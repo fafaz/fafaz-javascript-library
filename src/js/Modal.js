@@ -82,10 +82,7 @@ export default class Modal extends Component {
 
 
         let header = this._config.useHeader 
-        ?   `<section class="modal-header">
-                <h1 class="modal-header__title">${params.title}</h1>
-                <button class="modal-header__closeBtn modal-close"><svg width='1em' height='1em' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-            </section>` 
+        ? `<section class="modal-header"><h1 class="modal-header__title">${params.title}</h1><button class="modal-header__closeBtn modal-close"><svg width='1em' height='1em' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></section>` 
         : '';
 
         layer.innerHTML = `${header}<div class="modal-content__inner">${layer.innerHTML}</div>`;
