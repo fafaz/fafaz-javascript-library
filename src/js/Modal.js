@@ -1,11 +1,13 @@
 import Component from '@egjs/component';
-import { nodeToArray, addEvent, removeEvent, hasClass } from './utils';
+import { nodeToArray, addEvent } from './utils';
 import '../sass/modal.scss';
 
-/**
+/*!
  * Copyright (c) fafazlab
  * fafaz-modal projects are licensed under the MIT license
+ * https://github.com/fafaz/fafaz-modal
  */
+
 
 export default class Modal extends Component {
 
@@ -64,7 +66,8 @@ export default class Modal extends Component {
             overlay.id = `wrapper_${params.id}`;
         }
 
-        overlay.classList.add('modal-overlay', 'modal-close');
+        overlay.classList.add('modal-overlay');
+        overlay.classList.add('modal-close');
         layer.classList.add('modal-content');
 
         layer.style.width = `${params.width}px`;

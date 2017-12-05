@@ -16,7 +16,7 @@ Install via add a css, javascript files from the [build](build) directory to you
 ## Usage
 
 
-##### HTML
+#### HTML
 
 ```html
 <head>
@@ -40,7 +40,7 @@ Install via add a css, javascript files from the [build](build) directory to you
 
 </br>
 
-##### Javascript
+#### Javascript
 
 ```javascript
 var myModal = new fafaz.Modal('.modal-trigger', {
