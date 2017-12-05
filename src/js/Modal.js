@@ -21,11 +21,11 @@ export default class Modal extends Component {
                 useBorder: true,
                 borderColor: '#1e1e1e',
                 overlayColor: undefined,
-                spinner: false
             },
             cloneNode: true,
             fixedHeight: false,
-            useHeader: true
+            useHeader: true,
+            usePreloader: false
         };
         
         // 커스텀 설정값 불러오기 
@@ -43,7 +43,7 @@ export default class Modal extends Component {
                 };
 
                 // 이미 생성되었는지 확인, 이미 있으면 open 없으면 generate
-                const targetId = this._config.cloneNode ? `modal_${params.id}_temp` : `modal_${params.id}`;
+                const targetId = this._config.cloneNode ? `wrapper_${params.id}_temp` : `wrapper_${params.id}`;
                 document.getElementById(targetId) ? this.open(targetId) : this.generate(params, () => this.open(targetId));
             });
         });
@@ -54,13 +54,14 @@ export default class Modal extends Component {
         // overlay element를 생성한 후 
         let overlay = document.createElement('div');
         let layer = document.getElementById(params.id);
+        // let preloader;
 
         if (this._config.cloneNode) {
             layer = layer.cloneNode(true);
             layer.id = `${params.id}_temp`;
-            overlay.id = `modal_${params.id}_temp`;
+            overlay.id = `wrapper_${params.id}_temp`;
         } else {
-            overlay.id = `modal_${params.id}`;
+            overlay.id = `wrapper_${params.id}`;
         }
 
         overlay.classList.add('modal-overlay', 'modal-close');
@@ -93,7 +94,6 @@ export default class Modal extends Component {
         // 실제 DOM에 insert
         document.body.appendChild(overlay);
 
-
         // postioning 메서드 실행, ovelay overlow 고정 ( fixedHeight && params.height 일 경우에만 )
         if (this._config.fixedHeight && params.height) {
             const layerInner = layer.querySelector('.modal-content__inner');
@@ -109,7 +109,7 @@ export default class Modal extends Component {
         addEvent(layer, 'click', (e) => e.stopPropagation());
 
         // event trigger 등록
-        this.trigger('afterGenerate');
+        this.trigger('afterGenerate', { container: layer });
 
         // callback 실행
         callback();
@@ -133,7 +133,6 @@ export default class Modal extends Component {
 
         // html 노드의 overflow 를 초기화해준다.
         document.documentElement.style.overflowY = 'initial';
-
     }
 
     positioning(layer, layerHeight) {
