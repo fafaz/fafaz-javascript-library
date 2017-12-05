@@ -1,5 +1,5 @@
 # fafaz-Modal
-fafaz-Modal is a lightweight modal plugin with no dependencies (5.4KB minified / 2.17KB gzipped)
+fafaz-Modal is a lightweight modal plugin with no dependencies (8.4KB minified / 2.98KB gzipped)
 
 Example Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.github.io/fafaz-modal/demo/demo.html)
 
@@ -8,7 +8,7 @@ Example Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz
 
 ## Instructions
 
-Install via add a css, javascript files from the [dist](dist) directory to your page.
+Install via add a css, javascript files from the [build](build) directory to your page.
 
 
 <br/>
@@ -21,7 +21,7 @@ Install via add a css, javascript files from the [dist](dist) directory to your 
 ```html
 <head>
   ...
-  <script src="Modal.js"></script>
+  <script src="Modal.min.js"></script>
   <link rel="stylesheet" href="Modal.css" />
 </head>
 
@@ -30,7 +30,8 @@ Install via add a css, javascript files from the [dist](dist) directory to your 
     class="modal-trigger"
     data-modal-id="test-modal"
     data-modal-title="this is test modal"
-    data-modal-width="400">click here</button>
+    data-modal-width="400"
+    data-modal-height="300">click here</button>
 
   <div id="test-modal" hidden>Your Contents</div>
 </body>
@@ -53,16 +54,15 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 ## Options
 ```javascript
 {
-  overlayColor: '',
-  useContainerScroll: false,
-  useContentCache: true,
-  preventBackgroundScroll: true,
-  useHeader: true,
-  useFooter: true,
-  footerFocusingColor: '',
-  footerButtonName: ['cancel', 'apply'],
-  footerApplyCallback: null,
-  callback: null,
+    theme: {
+        useBorder: true,
+        borderColor: '#1e1e1e',
+        overlayColor: undefined,
+    },
+    cloneNode: true,
+    fixedHeight: false,
+    useHeader: true,
+    usePreloader: false
 }
 ```
 
