@@ -17,8 +17,13 @@
 
 body {
     background-color:#fafafa;
-    font-size:14px;
+}
+
+body,p,h1,h2,h3,h4,h5,h6,div,ul,li,ol,table,tr,td,th,button,select,textarea,input {
+    font-size:15px;
     font-family:'Encode Sans Expanded', sans-serif;
+    font-weight:300;
+    letter-spacing:0.05em;
 }
 
 .container-inner {
@@ -28,40 +33,68 @@ body {
 }
 
 .header {
-    background-color:#2e2e2e;
-    padding:50px 0;
+    height:60px;
     width:100%;
+    font-size:18px;
+    padding: 0 2em;
+    height:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
 }
 
+
 .header-title {
-    font-size:2em;
-    color:#fff;
+    color:#333;
     line-height:1;
+    font-weight:500;
+    font-size:1em;
 }
 
 .header-github {
-  display:inline-block;
-  font-size:0.9em;
-  color:#fff;
-  margin-top:10px;
+    font-size:1em;
+}
+.header-github > svg {
+    color:#333;
+    vertical-align:-0.1em;
 }
 
 .container {
-
+    display:flex;
+    align-items: center;
+    height: calc(100vh - 60px);
 }
 
-.container .container-inner {
-  padding:3em 0;
+.button-wrapper {
+    margin-bottom:8em;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
+.button-wrapper > p {
+    line-height:1.8
+}
 .button {
-  border:0;
-  background-color:#333;
-  color:#fff;
-  font-size:1.1em;
-  line-height:1;
-  padding:0.9em 2em;
-  border-radius:2px;
+    cursor:pointer;
+    outline:0;
+    box-shadow:4px 4px 0 #eee;
+    background-color:#fff;
+    border:1px solid #333;
+    color:#333;
+    margin-bottom:1em;
+    font-size:1.1em;
+    height:45px;
+    line-height:43px;
+    padding:0 2em;
+    border-radius:2px;
+}
+.button:hover {
+    background-color:#fbfbfb;
+}
+.button:active {
+    background-color:#f7f7f7;
+    line-height: 45px;
 }
 
 /*** TEST ***/

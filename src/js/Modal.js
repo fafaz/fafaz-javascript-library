@@ -19,7 +19,7 @@ export default class Modal extends Component {
         const defaultOptions = {
             theme: {
                 useBorder: true,
-                borderColor: '#1e1e1e',
+                borderColor: undefined,
                 overlayColor: undefined,
             },
             cloneNode: true,
@@ -77,7 +77,8 @@ export default class Modal extends Component {
 
         if (!this._config.theme.useBorder) {
             layer.style.border = '0';
-            layer.style.borderColor = this._config.theme.borderColor;
+        } else {
+            if (this._config.theme.borderColor) layer.style.borderColor = this._config.theme.borderColor;
         }
 
 
