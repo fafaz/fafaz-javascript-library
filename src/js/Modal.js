@@ -2,12 +2,11 @@ import Component from '@egjs/component';
 import { nodeToArray, addEvent } from './utils';
 import '../sass/modal.scss';
 
-/*!
+/**
  * Copyright (c) fafazlab
  * fafaz-modal projects are licensed under the MIT license
  * https://github.com/fafaz/fafaz-modal
  */
-
 
 export default class Modal extends Component {
 
