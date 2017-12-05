@@ -52,6 +52,7 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 <br/>
 
 ## Options
+
 ```javascript
 {
     theme: {
@@ -69,6 +70,7 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 
 <br/>
 ## Events
+
 ```javascript
 var myModal = new fafaz.Modal('.modal-trigger', {
     ...options
@@ -78,7 +80,17 @@ myModal.on('afterGenerate', function(e) {
   // ~~~
   // you can select container element by using e.container
 })
+```
 
+
+<br/>
+## Dependencies
+
+egjs/component [https://github.com/naver/egjs-component](https://github.com/naver/egjs-component)
+
+
+
+<br/>
 ## License
 
 MIT
