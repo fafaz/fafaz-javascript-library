@@ -69,6 +69,7 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 
 
 <br/>
+
 ## Events
 
 ```javascript
@@ -84,6 +85,7 @@ myModal.on('afterGenerate', function(e) {
 
 
 <br/>
+
 ## Dependencies
 
 egjs/component [https://github.com/naver/egjs-component](https://github.com/naver/egjs-component)
@@ -91,6 +93,7 @@ egjs/component [https://github.com/naver/egjs-component](https://github.com/nave
 
 
 <br/>
+
 ## License
 
 MIT
