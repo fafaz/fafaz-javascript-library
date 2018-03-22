@@ -30,8 +30,7 @@ Install via add a css, javascript files from the [build](build) directory to you
     class="modal-trigger"
     data-modal-id="test-modal"
     data-modal-title="this is test modal"
-    data-modal-width="400"
-    data-modal-height="300">click here</button>
+    data-modal-width="400">click here</button>
 
   <div id="test-modal" hidden>Your Contents</div>
 </body>
