@@ -13,12 +13,12 @@
     &.is-active {
         display: flex;
         z-index: 9999999999;
+        &._scrollingLayer {
+            overflow-y: scroll;
+            display: block;
+        }
     }
 
-    &._scrollingLayer {
-        overflow-y: scroll;
-        display: block;
-    }
 }
 
 .modal-content {
