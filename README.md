@@ -54,8 +54,8 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 
 ```javascript
 {
-    borderColor: '#1e1e1e',
-    overlayColor: undefined,
+    border: undefined, // ex) '1px solid #1e1e1e'
+    overlayColor: undefined, // ex) 'rgba(150,150,0, 0.5)'
     cloneNode: false,
     fullScreen: false,
     useHeader: true
