@@ -1,0 +1,111 @@
+@mixin clearfix {
+    &,
+    &:after {
+        clear: both;
+    }
+    &:after,
+    &:before {
+        content: '';
+        display: table;
+    }
+}
+
+@mixin ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin breakpoint($class) {
+    @if $class == mobile {
+        @media (max-width: 500px) { @content; }
+    }
+    @else if $class == tablet {
+        @media (max-width: 1024px) { @content; }
+    }
+    @else if $class == desktop {
+        @media (max-width: 1367px) { @content; }
+    }
+    @else if $class == wide {
+        @media (min-width: 1368px) { @content; }
+    }
+}
+
+@mixin init {
+    box-sizing: border-box;
+    *,
+    *:after,
+    *:before {
+        box-sizing: inherit;
+    }
+
+    &, table, input, select, button, textarea {
+        font-size: 14px;
+        @include breakpoint(tablet) {
+            font-size:13px;
+        }
+        @include breakpoint(mobile) {
+            font-size:12px;
+        }
+    }
+
+    select,
+    button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: inherit;
+        box-shadow: none;
+        border: 0;
+        outline: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: currentColor;
+    }
+
+    a:focus,
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    div[contenteditable=true]:focus {
+        outline: 0;
+    }
+        
+    a, label, button, input[type=button], input[type=checkbox], input[type=radio], select {
+        cursor: pointer;
+        @include breakpoint(tablet) {
+            cursor: default;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6, p,  ol, ul, table, input, textarea, select, button {
+        margin: 0;
+        padding: 0;
+    }
+
+    ol, ul {
+        list-style: none;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0
+    }
+
+    select {
+        background:url("data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Im0xMjEuMywzNC42Yy0xLjYtMS42LTQuMi0xLjYtNS44LDBsLTUxLDUxLjEtNTEuMS01MS4xYy0xLjYtMS42LTQuMi0xLjYtNS44LDAtMS42LDEuNi0xLjYsNC4yIDAsNS44bDUzLjksNTMuOWMwLjgsMC44IDEuOCwxLjIgMi45LDEuMiAxLDAgMi4xLTAuNCAyLjktMS4ybDUzLjktNTMuOWMxLjctMS42IDEuNy00LjIgMC4xLTUuOHoiIGZpbGw9IiM5OTk5OTkiLz4KICA8L2c+Cjwvc3ZnPgo=") no-repeat calc(100% - 1em) 50%;
+        background-size: 0.8em;
+        padding: 0 1em;
+        &::-ms-expand {
+            display: none;
+        }
+    }
+
+    ::placeholder {
+        color: #ccc;
+        opacity: 1; 
+    }
+}

@@ -1,3 +1,5 @@
+import delegate from 'delegate';
+
 // define window and document object
 const win = typeof window !== "undefined" && window.Math === Math
     ? window
@@ -69,4 +71,10 @@ export function hasClass(el, className) {
     } else {
         return new RegExp(`(^| )${className}( |$)`, "gi").test(el.className);
     }
+}
+
+export const addEventDelegation = (className = '', eventType = 'click', callback) => {
+    return delegate(className, eventType, (e) => {
+        callback(e);
+    }, false);
 }

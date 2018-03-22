@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -w --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --hotOnly --open --config webpack.config.dev.js"
   },
   "repository": {
@@ -44,6 +44,7 @@
     "webpack-dev-server": "^2.8.1"
   },
   "dependencies": {
-    "@egjs/component": "^2.1.0"
+    "@egjs/component": "^2.1.0",
+    "delegate": "^3.2.0"
   }
 }
