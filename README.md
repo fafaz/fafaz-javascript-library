@@ -22,7 +22,7 @@ Install via add a css, javascript files from the [build](build) directory to you
 <head>
   ...
   <script src="Modal.min.js"></script>
-  <link rel="stylesheet" href="Modal.css" />
+  <link rel="stylesheet" href="Modal.min.css" />
 </head>
 
 <body>
@@ -55,15 +55,11 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 
 ```javascript
 {
-    theme: {
-        useBorder: true,
-        borderColor: '#1e1e1e',
-        overlayColor: undefined,
-    },
-    cloneNode: true,
-    fixedHeight: false,
-    useHeader: true,
-    usePreloader: false
+    borderColor: '#1e1e1e',
+    overlayColor: undefined,
+    cloneNode: false,
+    fullScreen: false,
+    useHeader: true
 }
 ```
 
@@ -80,6 +76,16 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 myModal.on('afterGenerate', function(e) {
   // ~~~
   // you can select container element by using e.container
+})
+
+myModal.on('afterOpen', function(e) {
+  // ~~~
+  // you can select container element by using e.container
+  // you can select trigger element by using e.trigger
+})
+
+myModal.on('afterClose', function(e) {
+  // ~~~
 })
 ```
 

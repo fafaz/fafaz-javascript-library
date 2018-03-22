@@ -29,9 +29,7 @@
                   class="button trigger1"
                   data-modal-id="test_modal2"
                   data-modal-title="trigger1"
-                  data-modal-width="400"
-                  data-modal-height="500">click</button>
-                  <p>fixed height (inner scroll)</p>
+                  data-modal-width="400">click</button>
                   <p>use header</p>
                   <p>overlay color: rgba(233, 255, 43, 0.25)</p>
                   <p>border color: rgb(103, 205, 153)</p>
@@ -42,13 +40,33 @@
                     class="button trigger2"
                     data-modal-id="test_modal2"
                     data-modal-width="400">click</button>
-                    <p>auto height (outer scroll)</p>
+                    <p>background scrolling</p>
                     <p>no header</p>
                     <p>no border</p>
                     <p>afterGenerate event</p>
+                    <p>afterOpen event</p>
+                    <p>afterClose event</p>
+                </div>
+                
+                <div class="button-wrapper">
+                  <button
+                    class="button trigger3"
+                    data-modal-id="test_modal3">click</button>
+                    <p>full screen</p>
                 </div>
 
                   <div id="test_modal" hidden>
+                    <div class="test">
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                      <div class="test-item"></div>
+                    </div>
+                  </div>
+                  <div id="test_modal3" hidden>
                     <div class="test">
                       <div class="test-item"></div>
                       <div class="test-item"></div>
@@ -138,27 +156,26 @@
         (function() {
           window.onload = function() {
               var modal = new fafaz.Modal('.trigger1', {
-                theme: {
-                  overlayColor: 'rgba(233, 255, 43, 0.25)',
-                  borderColor: 'rgb(103, 205, 153)'
-                },
-                cloneNode: true,
-                fixedHeight: true,
-                useHeader: true,
+                overlayColor: 'rgba(233, 255, 43, 0.25)',
+                borderColor: 'rgb(103, 205, 153)',
+                useHeader: true
               });
-              
 
-            var modal2 = new fafaz.Modal('.trigger2', {
-              theme: {
-                useBorder: false
-              },
-              cloneNode: true,
-              fixedHeight: false,
-              useHeader: false,
+            var modal2 = new fafaz.Modal('.trigger2');
+
+            var modal3 = new fafaz.Modal('.trigger3', {
+                useHeader: true,
+                fullScreen: true
             });
 
             modal2.on('afterGenerate', function(e) {
               alert('afterGenerate');
+            });
+            modal2.on('afterOpen', function(e) {
+              alert('afterOpen');
+            });
+            modal2.on('afterClose', function(e) {
+              alert('afterClose');
             });
 
           }
