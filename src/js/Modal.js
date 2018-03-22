@@ -6,6 +6,8 @@ import '../sass/index.scss';
  * Copyright (c) fafazlab
  * fafaz-modal projects are licensed under the MIT license
  * https://github.com/fafaz/fafaz-modal
+ * 
+ * @ver 1.3
  */
 
 if (typeof NodeList.prototype.forEach !== "function") {
