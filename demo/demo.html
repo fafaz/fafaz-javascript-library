@@ -30,9 +30,9 @@
                   data-modal-id="test_modal1"
                   data-modal-title="trigger1"
                   data-modal-width="400">click</button>
-                  <p>use header</p>
-                  <p>overlay color: rgba(233, 255, 43, 0.25)</p>
-                  <p>border color: rgb(103, 205, 153)</p>
+                  <p>overlayColor: 'rgba(255, 40, 40, 0.5)'</p>
+                  <p>border: '2px solid #000'</p>
+                  <p>useHeader: true</p>
               </div>
 
                 <div class="button-wrapper">
@@ -40,9 +40,8 @@
                     class="button trigger2"
                     data-modal-id="test_modal2"
                     data-modal-width="400">click</button>
+                    <p>useHeader: false</p>
                     <p>background scrolling</p>
-                    <p>no header</p>
-                    <p>no border</p>
                     <p>afterGenerate event</p>
                     <p>afterOpen event</p>
                     <p>afterClose event</p>
@@ -53,7 +52,8 @@
                     class="button trigger3"
                     data-modal-title="test_modal3"
                     data-modal-id="test_modal3">click</button>
-                    <p>full screen</p>
+                    <p>fullScreen: true</p>
+                    <p>useHeader: true</p>
                 </div>
 
                   <div id="test_modal1" hidden>
@@ -157,8 +157,8 @@
         (function() {
           window.onload = function() {
               var modal = new fafaz.Modal('.trigger1', {
-                overlayColor: 'rgba(233, 255, 43, 0.25)',
-                borderColor: 'rgb(103, 205, 153)',
+                overlayColor: 'rgba(255, 40, 40, 0.5)',
+                border: '2px solid #000',
                 useHeader: true
               });
 
