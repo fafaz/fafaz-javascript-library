@@ -100,12 +100,12 @@ export default class Modal extends Component {
         addEvent(layer, 'click', (e) => e.stopPropagation());
 
        
+        addEvent(window, 'resize', () => this.checkScrolling(layer));
+        this.trigger('afterGenerate', { container: layer });
+        
         // callback 실행
         callback();
 
-        // window가 resize 될떄 스크롤 여부를 판단
-        addEvent(window, 'resize', () => this.checkScrolling(layer));
-        this.trigger('afterGenerate', { container: layer });
     }
 
     open(target, trigger) {
