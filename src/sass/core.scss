@@ -3,8 +3,7 @@
 
     display: none;
     position: fixed;
-    overflow-x:hidden;
-    overflow-y:auto;
+    overflow: hidden;
     top: 0; left: 0; right:0; bottom:0;
     background-color: rgba(75,75,75, 0.75);
     cursor: zoom-out;
@@ -16,8 +15,9 @@
         z-index: 9999999999;
     }
 
-    &._fullWidth {
-        overflow: hidden;
+    &._scrollingLayer {
+        overflow-y: scroll;
+        display: block;
     }
 }
 
@@ -35,6 +35,10 @@
         animation-duration: 1s;
         animation-iteration-count: 1;
     };
+
+    ._scrollingLayer & {
+        margin: 3% auto;
+    }
 
     ._fullWidth & {
         height:100%; 

@@ -146,11 +146,11 @@ export default class Modal extends Component {
         layerHeight = (layerHeight%2 === 0) ? layerHeight : layerHeight+1;
         
         if (!this._config.fullScreen && windowHeight <= layerHeight) {
-            layer.style.marginTop = '3%';
-            layer.style.marginBottom = '3%';
-            layer.parentNode.style.overflowY = 'scroll';
+            layer.parentNode.classList.add('_scrollingLayer');
         } else {
-            layer.parentNode.style.overflowY = 'hidden';
+            if (layer.parentNode.classList.contains('_scrollingLayer')) {
+                layer.parentNode.classList.remove('_scrollingLayer');
+            }
         }
     }
 };
