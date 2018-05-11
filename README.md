@@ -4,7 +4,7 @@ fafaz-Modal is a lightweight modal plugin with no dependencies (8.4KB minified /
 Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.github.io/fafaz-modal/demo/demo.html)
 
 
-</br><br/><br/>
+</br><br/>
 
 ## Instructions 
 > #### common
@@ -95,7 +95,7 @@ myModal.on('afterClose', function(e) {
 
 ## Dependencies
 
-egjs/component [https://github.com/naver/egjs-component](https://github.com/naver/egjs-component)
+egjs/component [https://github.com/naver/egjs-component](https://github.com/naver/egjs-component)<br/>
 delegate [https://github.com/zenorocha/delegate](https://github.com/zenorocha/delegate)
 
 
