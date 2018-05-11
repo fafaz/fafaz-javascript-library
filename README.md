@@ -1,54 +1,58 @@
 # fafaz-Modal
 fafaz-Modal is a lightweight modal plugin with no dependencies (8.4KB minified / 2.98KB gzipped)
 
-Example Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.github.io/fafaz-modal/demo/demo.html)
+Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.github.io/fafaz-modal/demo/demo.html)
 
 
-</br>
+</br><br/><br/>
 
-## Instructions
-
-Install via add a css, javascript files from the [build](build) directory to your page.
-
-
-<br/>
-
-## Usage
-
-
-#### HTML
+## Instructions 
+> #### common
 
 ```html
 <head>
-  ...
-  <script src="Modal.min.js"></script>
-  <link rel="stylesheet" href="Modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="Modal.min.css"  />
 </head>
 
 <body>
-  <button
-    class="modal-trigger"
-    data-modal-id="test-modal"
-    data-modal-title="this is test modal"
-    data-modal-width="400">click here</button>
+    <button
+        class="modal-trigger"
+        data-modal-id="test-modal"
+        data-modal-title="this is test modal"
+        data-modal-width="400"
+    >click here</button>
 
-  <div id="test-modal" hidden>Your Contents</div>
+    <div id="test-modal" hidden>Your Contents</div>
 </body>
 ```
 
+<br/>
 
-</br>
+>#### es5
+>add a javascript file (Modal.min.js) from the [build](build) directory to your page.
 
-#### Javascript
+```html
+  <body>
+    ...
 
-```javascript
-var myModal = new fafaz.Modal('.modal-trigger', {
-  ...options
-});
+    <script src="path/Modal.min.js"></script>
+    <script>var myModal = new fafaz.Modal('.modal-trigger', { ...options });</script>
+  </body>
 ```
 
-
 <br/>
+
+>#### es6
+> npm install --save fafaz-modal
+
+
+```javascript
+import Modal from 'fafaz-modal';
+
+const myModal = new Modal('.modal-trigger', { ...options });
+```
+
+<br/><br/>
 
 ## Options
 
@@ -63,14 +67,12 @@ var myModal = new fafaz.Modal('.modal-trigger', {
 ```
 
 
-<br/>
+<br/><br/>
 
 ## Events
 
 ```javascript
-var myModal = new fafaz.Modal('.modal-trigger', {
-    ...options
-});
+var myModal = new fafaz.Modal('.modal-trigger', { ...options });
 
 myModal.on('afterGenerate', function(e) {
   // ~~~
@@ -89,15 +91,16 @@ myModal.on('afterClose', function(e) {
 ```
 
 
-<br/>
+<br/><br/>
 
 ## Dependencies
 
 egjs/component [https://github.com/naver/egjs-component](https://github.com/naver/egjs-component)
+delegate [https://github.com/zenorocha/delegate](https://github.com/zenorocha/delegate)
 
 
 
-<br/>
+<br/><br/>
 
 ## License
 
