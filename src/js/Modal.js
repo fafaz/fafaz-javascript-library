@@ -14,7 +14,7 @@ export default class Modal extends Component {
     constructor(trigger = undefined, customConfig = {}) {
         super();
 
-        this._version = '1.4';
+        this._version = '1.5';
 
         // 기본 설정
         this._config = {
