@@ -56,7 +56,7 @@ export default class Modal extends Component {
         content.classList.add('fafazModal-content');
 
         // custom style 적용
-        if (this._config.style) wrapper.style = this._config.style;
+        if (this._config.style) wrapper.style = { ...this._config.style };
 
         // wrapping
         wrapper.appendChild(content);
@@ -85,6 +85,7 @@ export default class Modal extends Component {
         wrapper.classList.add('fafazModal-wrapper--isActive');
         this.target.content = document.getElementById(this.target.modalId).children[0];
         this.target.wrapper = wrapper;
+
         // change html overflow hidden
         document.documentElement.style.overflowY = 'hidden';
 
@@ -96,7 +97,6 @@ export default class Modal extends Component {
 
     close() {
         const wrapper = document.getElementById(this.target.modalId);
-        const content = wrapper.children[0];
 
         // overlay의 active 클래스를 삭제
         wrapper.classList.remove('fafazModal-wrapper--isActive');
