@@ -1,156 +1,136 @@
 import Component from '@egjs/component';
-import { addEvent, addEventDelegation } from './utils';
+import delegate from 'delegate';
 import '../sass/index.scss';
 
 /**
  * Copyright (c) fafazlab
  * fafaz-modal projects are licensed under the MIT license
  * https://github.com/fafaz/fafaz-modal
- * 
+ *
  * @ver 1.3
  */
 
-if (typeof NodeList.prototype.forEach !== "function") {
-    NodeList.prototype.forEach = Array.prototype.forEach;
-}
-
 export default class Modal extends Component {
-
     constructor(trigger = undefined, customConfig = {}) {
         super();
 
-        this._version = '1.3';
+        this._version = '1.4';
 
         // 기본 설정
         this._config = {
-            border: undefined,
-            overlayColor: undefined,
+            style: {},
             fullScreen: false,
             cloneNode: false, // 노드를 복사하기 때문에, 이벤트 바인딩을 새로 해주어야 한다. 열때마다 generate 하는 방식
-            useHeader: false,
             ...customConfig
         };
 
         if (!trigger || typeof trigger !== 'string') {
-            throw 'trigger must be a css selector in string type';
+            throw 'Trigger must be a css selector in string type';
         }
+
+        this.target = {};
 
         // 트리거 이벤트 맵핑
-        addEventDelegation(trigger, 'click', (ev) => {
-            const target = ev.delegateTarget;
-            
-            const params = {
-                id: target.getAttribute('data-modal-id'),
-                title: target.getAttribute('data-modal-title'),
-                width: target.getAttribute('data-modal-width') ? target.getAttribute('data-modal-width') : 500,
-            };
+        delegate(trigger, 'click', ({ delegateTarget }) => {
+            this.target.trigger = delegateTarget;
+            this.target.contentId = delegateTarget.getAttribute('data-modal-id');
+            this.target.modalId = this._config.cloneNode ? `modal_${this.target.contentId}_clone` : `modal_${this.target.contentId}`;
 
-            const targetId = this._config.cloneNode 
-                ? `wrapper_${params.id}_temp` 
-                : `wrapper_${params.id}`;
-
-            // 모달이 이미 generate 되었으면 open, 없으면 generate
-            document.getElementById(targetId) 
-                ? this.open(targetId, target) 
-                : this.generate(params, () => this.open(targetId, target));
+            // 이미 generated 된 모달이 있으면 open, 없으면 generate
+            document.getElementById(this.target.modalId) ? this.open() : this.generate();
         });
     }
-    // constructor end
 
-    generate(params, callback) {
-        // overlay element를 생성한 후 
-        let overlay = document.createElement('div');
-        let layer = document.getElementById(params.id);
+    generate(openTrigger = true) {
+        const wrapper = document.createElement('div');
+        let content = document.getElementById(this.target.contentId);
 
         if (this._config.cloneNode) {
-            layer = layer.cloneNode(true);
-            layer.id = `${params.id}_temp`;
-            overlay.id = `wrapper_${params.id}_temp`;
+            content = content.cloneNode(true);
+            wrapper.id = `modal_${this.target.contentId}_clone`;
         } else {
-            overlay.id = `wrapper_${params.id}`;
+            wrapper.id = `modal_${this.target.contentId}`;
         }
 
-        overlay.classList.add('modal-overlay');
-        overlay.classList.add('modal-close');
-        layer.classList.add('modal-content');
+        wrapper.className = `fafazModal-wrapper ${this._config.fullScreen ? 'fafazModal-wrapper--fullScreen' : ''} fafazModal__closeTrigger`;
+        content.classList.add('fafazModal-content');
 
-        if (!this._config.fullScreen) {
-            layer.style.width = `${params.width}px`;
-        } else {
-            overlay.classList.add('_fullWidth');
-        };
+        // custom style 적용
+        if (this._config.style) wrapper.style = this._config.style;
 
-        // custom theme 설정값 적용
-        if (this._config.overlayColor) overlay.style.backgroundColor = this._config.overlayColor;
-        if (this._config.border) layer.style.border = this._config.border;
+        // wrapping
+        wrapper.appendChild(content);
 
-        let header = this._config.useHeader 
-            ? `<section class="modal-header"><h1 class="modal-header__title">${params.title}</h1><button class="modal-header__closeBtn modal-close"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></section>`
-            : '';
-
-        layer.innerHTML = `${header}<div class="modal-content__inner">${layer.innerHTML}</div>`;
-        overlay.appendChild(layer);
-        
         // 실제 DOM에 insert
-        document.body.appendChild(overlay);
+        document.body.appendChild(wrapper);
 
-        const closeTriggers = overlay.querySelectorAll('.modal-close');
-        closeTriggers.forEach((item) => addEvent(item, 'click', () => this.close(overlay.id)));
-        addEvent(overlay,'click', () =>  this.close(overlay.id));
-        addEvent(layer, 'click', (e) => e.stopPropagation());
+        // close 이벤트 등록
+        delegate('.fafazModal__closeTrigger', 'click', () => {
+            this.close();
+        });
 
-       
-        addEvent(window, 'resize', () => this.checkScrolling(layer));
-        this.trigger('afterGenerate', { container: layer });
-        
-        // callback 실행
-        callback();
+        content.addEventListener('click', e => {
+            e.stopPropagation();
+        });
 
+        // 이벤트 바인딩, 변수 전달 (afterGenerate)
+        this.trigger('afterGenerate', { modal: wrapper });
+
+        // generate 후 실행
+        openTrigger && this.open();
     }
 
-    open(target, trigger) {
-        let overlay = document.getElementById(target);
-        overlay.classList.add('is-active');
+    open() {
+        const wrapper = document.getElementById(this.target.modalId);
+        wrapper.classList.add('fafazModal-wrapper--isActive');
+        this.target.content = document.getElementById(this.target.modalId).children[0];
+        this.target.wrapper = wrapper;
+        // change html overflow hidden
         document.documentElement.style.overflowY = 'hidden';
 
-        let container = overlay.querySelector('.modal-content');
-        this.trigger('afterOpen', { container, trigger });
-        this.checkScrolling(container);
+        window.addEventListener('resize', this.positioning);
+
+        // 이벤트 바인딩, 변수 전달 (afterOpen)
+        this.trigger('afterOpen', { modal: wrapper, trigger: this.target.trigger });
     }
 
-    close(target) {
-        const overlay = document.getElementById(target);
+    close() {
+        const wrapper = document.getElementById(this.target.modalId);
+        const content = wrapper.children[0];
 
         // overlay의 active 클래스를 삭제
-        overlay.classList.remove('is-active');
+        wrapper.classList.remove('fafazModal-wrapper--isActive');
+
+        window.removeEventListener('resize', this.positioning);
 
         // 복제된 node 라면 다시 삭제한다. ( 열떄마다 새로 generate하도록 )
-        if (this._config.cloneNode) {
-            overlay.parentNode.removeChild(overlay)
-        }
+        if (this._config.cloneNode) wrapper.parentNode.removeChild(wrapper);
 
         // html 노드의 overflow 를 초기화해준다.
-        document.documentElement.style.overflowY = '';
-        this.trigger('afterClose', { container: overlay.querySelector('.modal-content') });
+        document.documentElement.style.overflowY = null;
+
+        // 이벤트 바인딩, 변수 전달 (afterClose)
+        this.trigger('afterClose', { modal: wrapper });
     }
 
-    checkScrolling(layer) {
+    positioning = () => {
+        if (this._config.fullScreen) return;
+
         /**
          * NOTE::
-         * layerHeight가 windowHeight 보다 크면 상단 위치 고정 후, overlay의 overflow 를 활성화
+         * targetHeight가 windowHeight 보다 크면 상단 위치 고정 후, overlay의 overflow 를 활성화
          * windowHeight 보다 작으면 html overflow deactivate
          */
-
         let windowHeight = window.innerHeight;
-        let layerHeight = Math.round(layer.offsetHeight);
-        layerHeight = (layerHeight%2 === 0) ? layerHeight : layerHeight+1;
-        
-        if (!this._config.fullScreen && windowHeight <= layerHeight) {
-            layer.parentNode.classList.add('_scrollingLayer');
+        let targetHeight = Math.round(this.target.content.offsetHeight);
+        targetHeight = targetHeight % 2 === 0 ? targetHeight : targetHeight + 1;
+
+        if (windowHeight <= targetHeight) {
+            this.target.wrapper.classList.add('fafazModal-wrapper--scrollingContent');
         } else {
-            if (layer.parentNode.classList.contains('_scrollingLayer')) {
-                layer.parentNode.classList.remove('_scrollingLayer');
+            if (this.target.wrapper.classList.contains('fafazModal-wrapper--scrollingContent')) {
+                this.target.wrapper.classList.remove('fafazModal-wrapper--scrollingContent');
             }
         }
-    }
-};
+    };
+}
