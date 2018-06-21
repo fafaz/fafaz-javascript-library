@@ -18,7 +18,7 @@ export default class Modal extends Component {
 
         // 기본 설정
         this._config = {
-            style: {},
+            style: undefined,
             fullScreen: false,
             cloneNode: false, // 노드를 복사하기 때문에, 이벤트 바인딩을 새로 해주어야 한다. 열때마다 generate 하는 방식
             ...customConfig
@@ -56,7 +56,7 @@ export default class Modal extends Component {
         content.classList.add('fafazModal-content');
 
         // custom style 적용
-        if (this._config.style) wrapper.style = { ...this._config.style };
+        if (this._config.style) wrapper.style.cssText = this._config.style;
 
         // wrapping
         wrapper.appendChild(content);
