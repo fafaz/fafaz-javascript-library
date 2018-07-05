@@ -1,4 +1,3 @@
-import Component from '@egjs/component';
 import delegate from 'delegate';
 import '../sass/index.scss';
 
@@ -7,18 +6,18 @@ import '../sass/index.scss';
  * fafaz-modal projects are licensed under the MIT license
  * https://github.com/fafaz/fafaz-modal
  *
- * @ver 1.3
+ * @ver 1.5.4
  */
 
-export default class Modal extends Component {
+export default class Modal {
+    handlerList = [];
     constructor(trigger = undefined, customConfig = {}) {
-        super();
-
-        this._version = '1.5';
+        this._version = '1.5.4';
 
         // 기본 설정
         this._config = {
-            style: undefined,
+            overlayStyle: undefined,
+            layerStyle: undefined,
             fullScreen: false,
             cloneNode: false, // 노드를 복사하기 때문에, 이벤트 바인딩을 새로 해주어야 한다. 열때마다 generate 하는 방식
             ...customConfig
@@ -56,7 +55,8 @@ export default class Modal extends Component {
         content.classList.add('fafazModal-content');
 
         // custom style 적용
-        if (this._config.style) wrapper.style.cssText = this._config.style;
+        if (this._config.overlayStyle) wrapper.style.cssText = this._config.overlayStyle;
+        if (this._config.layerStyle) content.style.cssText = this._config.layerStyle;
 
         // wrapping
         wrapper.appendChild(content);
@@ -133,4 +133,15 @@ export default class Modal extends Component {
             }
         }
     };
+
+    handlerList = {};
+
+    trigger(eventName, modules) {
+        this.handlerList[eventName] !== undefined && this.handlerList[eventName](modules);
+        // modules 는 전달값
+    }
+
+    on(eventName, handler) {
+        this.handlerList[eventName] = handler;
+    }
 }
