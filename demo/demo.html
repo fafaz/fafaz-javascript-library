@@ -140,15 +140,7 @@
                     </div>
                   </div>
                   <div id="test_modal3" hidden>
-                    <div class="test">
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                    </div>
+                    <button class="modal-close-button">CLOSE MODAL</button>
                   </div>
             </div>
         </section>
@@ -164,19 +156,24 @@
 
             var modal2 = new fafaz.Modal('.trigger2');
 
-            var modal3 = new fafaz.Modal('.trigger3', {
-                useHeader: true,
+            var fullscreenModal = new fafaz.Modal.default('.trigger3', {
+                overlayStyle: 'background-color: rgba(255,255,255,0.9); border: 2px solid #000;',
                 fullScreen: true
             });
 
+            
+            // EVENTS
             modal2.on('afterGenerate', function(e) {
               alert('afterGenerate');
             });
             modal2.on('afterOpen', function(e) {
               alert('afterOpen');
             });
-            modal2.on('afterClose', function(e) {
-              alert('afterClose');
+
+            fullscreenModal.on('afterGenerate', function(e) {
+              e.modal.querySelector('.modal-close-button').addEventListener('click', function() {
+                fullscreenModal.close();
+              });
             });
 
           }

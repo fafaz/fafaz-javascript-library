@@ -7,7 +7,7 @@ Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.gi
 </br><br/>
 
 ## Instructions 
-> #### common
+#### common
 
 ```html
 <head>
@@ -15,41 +15,38 @@ Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.gi
 </head>
 
 <body>
-    <button
-        class="modal-trigger"
-        data-modal-id="test-modal"
-        data-modal-title="this is test modal"
-        data-modal-width="400"
-    >click here</button>
+    <button class="modal-trigger" data-modal-id="test-modal">click here</button>
 
-    <div id="test-modal" hidden>Your Contents</div>
+    <div id="test-modal" hidden>
+        ...Your Contents...
+    </div>
 </body>
 ```
 
 <br/>
 
->#### es5
->add a javascript file (Modal.min.js) from the [build](build) directory to your page.
+#### es5
+add a javascript file (Modal.min.js) from the [build](build) directory to your page.
 
 ```html
   <body>
     ...
 
     <script src="path/Modal.min.js"></script>
-    <script>var myModal = new fafaz.Modal('.modal-trigger', { ...options });</script>
+    <script>var myModal = new fafaz.Modal.default('.modal-trigger', { ... options });</script>
   </body>
 ```
 
 <br/>
 
->#### es6
-> npm install --save fafaz-modal
+#### es6
+npm install --save fafaz-modal
 
 
 ```javascript
 import Modal from 'fafaz-modal';
 
-const myModal = new Modal('.modal-trigger', { ...options });
+const myModal = new Modal('.modal-trigger', { ... options });
 ```
 
 <br/><br/>
@@ -58,35 +55,50 @@ const myModal = new Modal('.modal-trigger', { ...options });
 
 ```javascript
 {
-    border: undefined, // ex) '1px solid #1e1e1e'
-    overlayColor: undefined, // ex) 'rgba(150,150,0, 0.5)'
-    cloneNode: false,
-    fullScreen: false,
-    useHeader: false
+    overlayStyle: undefined, // ex) 'background-color: rgba(50,50,50,0.5);'
+    layerStyle: undefined, // ex) 'border: 1px solid #000;'
+    cloneNode: false, 
+    fullScreen: false
 }
 ```
 
 
 <br/><br/>
 
+## Methods
+
+```javascript
+var myModal = new fafaz.Modal.default('.modal-trigger');
+
+// modal open
+myModal.open();
+
+// modal close
+myMOdal.close(); 
+
+// calculate the height of the modal, and if the height exceeds the window height, reposition.
+myModal.positioning(); 
+```
+
+<br/><br/>
+
+
 ## Events
 
 ```javascript
-var myModal = new fafaz.Modal('.modal-trigger', { ...options });
+var myModal = new fafaz.Modal.default('.modal-trigger');
 
 myModal.on('afterGenerate', function(e) {
-  // ~~~
-  // you can select container element by using e.container
+  // you can select container element by using e.modal
 })
 
 myModal.on('afterOpen', function(e) {
-  // ~~~
-  // you can select container element by using e.container
+  // you can select container element by using e.modal
   // you can select trigger element by using e.trigger
 })
 
 myModal.on('afterClose', function(e) {
-  // ~~~
+  // you can select container element by using e.modal
 })
 ```
 
@@ -95,8 +107,15 @@ myModal.on('afterClose', function(e) {
 
 ## Dependencies
 
-egjs/component [https://github.com/naver/egjs-component](https://github.com/naver/egjs-component)<br/>
 delegate [https://github.com/zenorocha/delegate](https://github.com/zenorocha/delegate)
+
+
+
+<br/><br/>
+
+## Compatibility
+
+IE10+ (this library uses css flexbox)
 
 
 
