@@ -20,6 +20,7 @@ Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.gi
 ```
 
 <br>
+
 #### basic usage
 ```html
 <head>
