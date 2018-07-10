@@ -11,7 +11,7 @@ import '../sass/index.scss';
 
 export default class Modal {
     constructor(trigger = undefined, customConfig = {}) {
-        this._version = '1.5.5';
+        this._version = '1.5.6';
 
         // 기본 설정
         this._config = {
@@ -77,8 +77,6 @@ export default class Modal {
             e.stopPropagation();
         });
 
-        window.addEventListener('resize', this.positioning);
-
         // 이벤트 바인딩, 변수 전달 (afterGenerate)
         this.trigger('afterGenerate', { modal: wrapper });
 
@@ -96,6 +94,7 @@ export default class Modal {
         document.documentElement.style.overflowY = 'hidden';
 
         this.positioning();
+        window.addEventListener('resize', this.positioning);
 
         // 이벤트 바인딩, 변수 전달 (afterOpen)
         this.trigger('afterOpen', { modal: wrapper, trigger: this.target.trigger });
