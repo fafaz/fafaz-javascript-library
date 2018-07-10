@@ -77,6 +77,8 @@ export default class Modal {
             e.stopPropagation();
         });
 
+        window.addEventListener('resize', this.positioning);
+
         // 이벤트 바인딩, 변수 전달 (afterGenerate)
         this.trigger('afterGenerate', { modal: wrapper });
 
@@ -93,7 +95,7 @@ export default class Modal {
         // change html overflow hidden
         document.documentElement.style.overflowY = 'hidden';
 
-        window.addEventListener('resize', this.positioning);
+        this.positioning();
 
         // 이벤트 바인딩, 변수 전달 (afterOpen)
         this.trigger('afterOpen', { modal: wrapper, trigger: this.target.trigger });

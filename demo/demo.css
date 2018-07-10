@@ -99,15 +99,52 @@ body,p,h1,h2,h3,h4,h5,h6,div,ul,li,ol,table,tr,td,th,button,select,textarea,inpu
 
 /*** TEST ***/
 .test {
-  padding:20px;
+    position: relative;
+    background-color:#fff;
+    margin: 0 auto;
+    width: 500px;
+    padding:20px;
 }
+.test--fullscreen {
+    background-color: rgba(255,255,255, 0.9);
+    text-align:center;
+    padding-top: 45vh;
+}
+
 .test-item {
-  position:relative;
   overflow:hidden;
     display:block;
     height:75px;
-    width:100%;
+    width: 100%;
+    background-color:#f7f7f7;
+    margin-bottom:20px;
+}
+
+.test-item:last-child {
+    margin-bottom:0;
+}
+
+.controller {
+    position: fixed;
+    z-index: 9999999;
+    left:20px;
+    bottom:20px;
+    width: 200px;
+    border-radius: 5px;
     background-color:#fff;
-    border:1px solid #ddd;
-    margin-bottom:10px;
+    padding: 15px 20px;
+}
+.controller > button {
+    cursor: pointer;
+    user-select:none;
+    border:0;
+    font-size: 12px;
+    padding: 10px 0;
+    width: 100%;
+    box-shadow: none;
+    outline:0;
+    background-color:#000;
+    margin: 5px 0;
+    color:#fff;
+    
 }

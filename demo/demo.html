@@ -15,7 +15,7 @@
         <section class="header">
             <h1 class="header-title">fafaz.Modal</h1>
             <a href="https://github.com/fafaz/fafaz-modal" target="_blank" class="header-github">
-              <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              <svg width="1.25em" height="1.25em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" class="feather feather-github">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
               </svg>
@@ -25,122 +25,60 @@
         <section class="container">
             <div class="container-inner">
               <div class="button-wrapper">
-                <button
-                  class="button trigger1"
-                  data-modal-id="test_modal1"
-                  data-modal-title="trigger1"
-                  data-modal-width="400">click</button>
-                  <p>overlayColor: 'rgba(255, 25, 25, 0.75)'</p>
-                  <p>border: '2px solid #000'</p>
-                  <p>useHeader: true</p>
+                <button class="button trigger1" data-modal-id="test_modal1">click</button>
+                <p>overlayStyle: 'background-color: rgba(255, 25, 25, 0.75)'</p>
+                <p>layerStyle: 'border: 2px solid #000'</p>
               </div>
 
                 <div class="button-wrapper">
-                  <button
-                    class="button trigger2"
-                    data-modal-id="test_modal2"
-                    data-modal-width="400">click</button>
-                    <p>useHeader: false</p>
-                    <p>background scrolling</p>
-                    <p>afterGenerate event</p>
-                    <p>afterOpen event</p>
-                    <p>afterClose event</p>
+                  <button class="button trigger2" data-modal-id="test_modal2">click</button>
+                  <p>background scrolling</p>
+                  <p>If you add or remove the box,</p>
+                  <p>the positioning method will automatically be executed.</p>
                 </div>
                 
                 <div class="button-wrapper">
-                  <button
-                    class="button trigger3"
-                    data-modal-title="test_modal3"
-                    data-modal-id="test_modal3">click</button>
+                  <button class="button trigger3" data-modal-id="test_modal3">click</button>
                     <p>fullScreen: true</p>
-                    <p>useHeader: true</p>
+                    <p>You can test the close method --- myModal.close()</p>
                 </div>
 
-                  <div id="test_modal1" hidden>
-                    <div class="test">
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                    </div>
+                <div id="test_modal1" class="test" hidden>
+                  <div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
                   </div>
-                  <div id="test_modal2" hidden>
-                    <div class="test">
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                      <div class="test-item"></div>
-                    </div>
+                </div>
+
+                <div id="test_modal2" class="test" hidden>
+                  <div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
+                    <div class="test-item"></div>
                   </div>
-                  <div id="test_modal3" hidden>
-                    <button class="modal-close-button">CLOSE MODAL</button>
+                </div>
+
+                  <div id="test_modal3" class="test--fullscreen" hidden>
+                    <h1>full screen~~</h1>
                   </div>
             </div>
         </section>
@@ -148,34 +86,77 @@
         <script type="text/javascript">
         (function() {
           window.onload = function() {
-              var modal = new fafaz.Modal('.trigger1', {
-                overlayColor: 'rgba(255, 25, 25, 0.75)',
-                border: '2px solid #000',
-                useHeader: true
-              });
 
-            var modal2 = new fafaz.Modal('.trigger2');
-
-            var fullscreenModal = new fafaz.Modal.default('.trigger3', {
-                overlayStyle: 'background-color: rgba(255,255,255,0.9); border: 2px solid #000;',
-                fullScreen: true
+            // instance
+            var modal = new fafaz.Modal.default('.trigger1', {
+              overlayStyle: 'background-color: rgba(255, 25, 25, 0.75)',
+              layerStyle: 'border: 2px solid #000'
             });
+
+            var modal2 = new fafaz.Modal.default('.trigger2');
+
+            var modal3 = new fafaz.Modal.default('.trigger3', { fullScreen: true });
 
             
-            // EVENTS
-            modal2.on('afterGenerate', function(e) {
-              alert('afterGenerate');
-            });
+            // add event handler
             modal2.on('afterOpen', function(e) {
-              alert('afterOpen');
-            });
+              var container = e.modal.children[0].children[0];
+              var controller = document.createElement('div');
+              var addBoxButton = document.createElement('button');
+              var removeBoxButton = document.createElement('button');
+        
+              controller.classList.add('controller');
+              addBoxButton.innerText = 'add 3 boxes';
+              removeBoxButton.innerText = 'remove 3 boxes';
+              controller.appendChild(addBoxButton);
+              controller.appendChild(removeBoxButton);
+              document.body.appendChild(controller);
 
-            fullscreenModal.on('afterGenerate', function(e) {
-              e.modal.querySelector('.modal-close-button').addEventListener('click', function() {
-                fullscreenModal.close();
+              addBoxButton.addEventListener('click', function() {
+                for (var i=0; i<3; i++) {
+                  let item = document.createElement('div');
+                  item.classList.add('test-item');
+                  container.appendChild(item);
+                }
+                modal2.positioning();
+              });
+
+              removeBoxButton.addEventListener('click', function() {
+                if (container.hasChildNodes()) {
+                  for(var i=0; i<3; i++) {
+                    container.removeChild(container.childNodes[0]);
+                  }
+                  modal2.positioning();
+                } else {
+                  alert('no item');
+                  return;
+                }
               });
             });
 
+            modal2.on('afterClose', function() {
+              document.body.removeChild(document.querySelector('.controller'));
+            });
+
+
+            modal3.on('afterOpen', function(e) {
+              var container = e.modal.children[0].children[0];
+              var controller = document.createElement('div');
+              var closeButton = document.createElement('button');
+
+              controller.classList.add('controller');
+              closeButton.innerText = 'close';
+              controller.appendChild(closeButton);
+              document.body.appendChild(controller);
+
+              closeButton.addEventListener('click', function() {
+                modal3.close();
+              });
+            });
+            
+            modal3.on('afterClose', function() {
+              document.body.removeChild(document.querySelector('.controller'));
+            });
           }
         })();
         </script>
