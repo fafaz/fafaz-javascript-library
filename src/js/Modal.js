@@ -10,18 +10,19 @@ import '../sass/index.scss';
  */
 
 export default class Modal {
-    handlerList = [];
     constructor(trigger = undefined, customConfig = {}) {
-        this._version = '1.5.4';
+        this._version = '1.5.5';
 
         // 기본 설정
         this._config = {
             overlayStyle: undefined,
             layerStyle: undefined,
             fullScreen: false,
-            cloneNode: false, // 노드를 복사하기 때문에, 이벤트 바인딩을 새로 해주어야 한다. 열때마다 generate 하는 방식
+            cloneNode: false, // 노드를 복사해서 새로운 modal을 생성 (열때마다 generate 하는 방식)
             ...customConfig
         };
+
+        this.closeTriggerAlreadyAdded = false;
 
         if (!trigger || typeof trigger !== 'string') {
             throw 'Trigger must be a css selector in string type';
@@ -65,9 +66,12 @@ export default class Modal {
         document.body.appendChild(wrapper);
 
         // close 이벤트 등록
-        delegate('.fafazModal__closeTrigger', 'click', () => {
-            this.close();
-        });
+        if (!this.closeTriggerAlreadyAdded) {
+            delegate('.fafazModal__closeTrigger', 'click', () => {
+                this.close();
+            });
+            this.closeTriggerAlreadyAdded = true;
+        }
 
         content.addEventListener('click', e => {
             e.stopPropagation();
@@ -100,6 +104,7 @@ export default class Modal {
 
         // overlay의 active 클래스를 삭제
         wrapper.classList.remove('fafazModal-wrapper--isActive');
+        wrapper.classList.contains('fafazModal-wrapper--scrollingContent') && wrapper.classList.remove('fafazModal-wrapper--scrollingContent');
 
         window.removeEventListener('resize', this.positioning);
 
