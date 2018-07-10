@@ -7,11 +7,12 @@ Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.gi
 </br><br/>
 
 ## Instructions 
-#### common
+#### common (es5)
+add assets (css, js) from the [build](build) directory to your page.<br>
 
 ```html
 <head>
-    <link rel="stylesheet" type="text/css" href="Modal.min.css"  />
+    <link rel="stylesheet" type="text/css" href="path/Modal.min.css"  />
 </head>
 
 <body>
@@ -20,31 +21,24 @@ Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.gi
     <div id="test-modal" hidden>
         ...Your Contents...
     </div>
+
+    <script src="path/Modal.min.js"></script>
+    <script>
+        var myModal = new fafaz.Modal.default('.modal-trigger', { ... options });
+    </script>
 </body>
 ```
 
 <br/>
 
-#### es5
-add a javascript file (Modal.min.js) from the [build](build) directory to your page.
-
-```html
-  <body>
-    ...
-
-    <script src="path/Modal.min.js"></script>
-    <script>var myModal = new fafaz.Modal.default('.modal-trigger', { ... options });</script>
-  </body>
-```
-
-<br/>
-
-#### es6
-npm install --save fafaz-modal
+#### es6 
+this assumes you are using package manager such as npm or yarn.
+`npm install --save fafaz-modal` **or** `yarn add fafaz-modal`
 
 
 ```javascript
 import Modal from 'fafaz-modal';
+import 'fafaz-modal/build/Modal.min.css';
 
 const myModal = new Modal('.modal-trigger', { ... options });
 ```
