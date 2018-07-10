@@ -1,5 +1,5 @@
 # fafaz-Modal
-fafaz-Modal is a lightweight modal plugin with no dependencies (8.4KB minified / 2.98KB gzipped)
+fafaz-Modal is a lightweight modal plugin (5.17KB minified / 1.7KB gzipped)
 
 Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.github.io/fafaz-modal/demo/demo.html)
 
