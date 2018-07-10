@@ -41,7 +41,7 @@ Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.gi
 
 <br/>
 
-#### package manager (npm or yarn) + babel compiler 
+#### package manager + babel compiler 
 `npm install --save fafaz-modal` **or** `yarn add fafaz-modal`
 
 
