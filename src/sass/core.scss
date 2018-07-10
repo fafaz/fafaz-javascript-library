@@ -30,7 +30,7 @@
     .fafazModal-wrapper--isActive > & {
         display: block;
         animation-name: modal-animation;
-        animation-duration: 1s;
+        animation-duration: .25s;
         animation-iteration-count: 1;
         animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     };
