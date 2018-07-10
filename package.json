@@ -13,7 +13,9 @@
   },
   "keywords": [
     "fafaz",
-    "javascript"
+    "javascript",
+    "modal",
+    "ui components"
   ],
   "namespace": {
     "fafaz": "fafaz"
