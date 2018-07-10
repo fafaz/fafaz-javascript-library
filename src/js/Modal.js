@@ -11,7 +11,7 @@ import '../sass/index.scss';
 
 export default class Modal {
     constructor(trigger = undefined, customConfig = {}) {
-        this._version = '1.5.8';
+        this._version = '1.5.9';
 
         // 기본 설정
         this._config = {
