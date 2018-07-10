@@ -60,10 +60,9 @@ body,p,h1,h2,h3,h4,h5,h6,div,ul,li,ol,table,tr,td,th,button,select,textarea,inpu
 }
 
 .container {
-    display:flex;
-    align-items: center;
+    display:block;
     height: calc(100vh - 60px);
-    margin-top:60px;
+    padding: 3rem 1rem;
 }
 
 .button-wrapper {
