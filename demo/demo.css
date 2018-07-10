@@ -73,7 +73,8 @@ body,p,h1,h2,h3,h4,h5,h6,div,ul,li,ol,table,tr,td,th,button,select,textarea,inpu
     align-items: center;
 }
 .button-wrapper > p {
-    line-height:1.8
+    line-height:1.8;
+    text-align:center;
 }
 .button {
     cursor:pointer;
