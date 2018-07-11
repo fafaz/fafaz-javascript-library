@@ -1,7 +1,7 @@
 {
   "name": "fafaz-modal",
-  "version": "1.5.9",
-  "description": "",
+  "version": "1.6.0",
+  "description": "javascript modal ui components",
   "main": "build/Modal.min.js",
   "scripts": {
     "build": "webpack --config webpack.config.prod.js",
