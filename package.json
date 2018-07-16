@@ -1,6 +1,6 @@
 {
   "name": "fafaz-modal",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "javascript modal ui components",
   "main": "build/Modal.min.js",
   "scripts": {
