@@ -113,7 +113,7 @@ export default class Modal {
         if (this._config.cloneNode) wrapper.parentNode.removeChild(wrapper);
 
         // html 노드의 overflow 를 초기화해준다.
-        document.documentElement.style.overflowY = 'auto';
+        document.documentElement.style.overflowY = 'inherit';
 
         // 이벤트 바인딩, 변수 전달 (afterClose)
         this.trigger('afterClose', { modal: wrapper });
