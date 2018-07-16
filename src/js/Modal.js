@@ -6,12 +6,12 @@ import '../sass/index.scss';
  * fafaz-modal projects are licensed under the MIT license
  * https://github.com/fafaz/fafaz-modal
  *
- * @ver 1.6.1
+ * @ver 1.6.2
  */
 
 export default class Modal {
     constructor(trigger = undefined, customConfig = {}) {
-        this._version = '1.6.1';
+        this._version = '1.6.2';
 
         // 기본 설정
         this._config = {
