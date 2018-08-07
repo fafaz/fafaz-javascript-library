@@ -15,7 +15,7 @@ Demo Page: [https://fafaz.github.io/fafaz-modal/demo/demo.html](https://fafaz.gi
 </button>
 
 <div id="test-modal" hidden>
-  ...Your Contents
+  ...Your Contents 
 </div>
 ```
 
